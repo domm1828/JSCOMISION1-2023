@@ -1,0 +1,12 @@
+.green{
+    color: green;
+}
+table{
+    width: 50%;
+}
+tr td,tr th{
+    border-bottom:1px solid red;
+}
+.oculto {
+    display: none;
+}
