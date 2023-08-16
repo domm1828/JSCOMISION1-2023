@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.21/dist/sweetalert2.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <form id="formPerson" onsubmit="event.preventDefault();addFormPersona()">
+                    
+                    <label for="dni" class="form-label">DNI</label>
+                    <input type="number" id="dni" class="form-control" required>
+
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input type="text" id="firstName" class="form-control" required>
+            
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input type="text" id="lastName" class="form-control" required>
+                    
+                    <label for="birthday" class="form-label">Birthday</label>
+                    <input type="date" id="birthday" class="form-control" required>
+            
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" id="address" class="form-control" required>
+            
+                    <label for="status" class="form-label">Status</label>
+                    <input type="text" id="status" class="form-control" required>
+            
+                    <button type="submit" class="btn btn-danger m-1" id="btnAdd">Agregar</button>
+                    <button type="button" class="btn btn-warning m-1" onclick="buttonChange()">Cancelar</button>
+                </form>
+            </div>
+
+            <div  class="col-12 col-md-8">
+                <input type="text" id="search" onkeyup="actionFilterInput()" placeholder="Buscar Por Nombres y Apellidos" class="form-control mb-3">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>DNI</th>
+                            <th>NOMBRES Y APELLIDOS</th>
+                            <th>EDAD</th>
+                            <th>DIRECCION</th>
+                            <th>ESTATUS</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listPerson">
+                        <tr><td colspan="6" class="text-center">NO HAY REGISTROS</td></tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.21/dist/sweetalert2.all.min.js"></script>   
+    <script src="main.js" ></script>
+</body>
+</html>
