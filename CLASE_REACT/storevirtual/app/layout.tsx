@@ -1,10 +1,11 @@
 'use client';
+import NavBar from '@/components/nav-bar';
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import Link from 'next/link';
-import {usePathname} from 'next/navigation'
-
+import Footer from '@/components/footer';
+import Hero from '@/components/hero';
+import { ThemeContextProvider, useThemeContext } from './context/theme';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -17,23 +18,28 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-
-  const currentRoute = usePathname();
-  const linkhref='flex items-center pl-[30px] pr-[30px] h-full no-underline hover:text-amber-600 duration-300';
-  const activeStyle = linkhref+' text-black bg-amber-300';
-  const inactiveStyle=  linkhref+' text-white';
-  
- 
+  const {color}= useThemeContext();
 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav className='h-[56px] flex justify-center item-center bg-indigo-700'>
-        <Link href='/' className={(currentRoute ==='/') ? activeStyle : inactiveStyle }> HOME</Link>
-        <Link href='/about' className={(currentRoute ==='/about') ? activeStyle : inactiveStyle }> ABOUT</Link>
-        <Link href='/contact' className={(currentRoute ==='/contact') ? activeStyle : inactiveStyle }> CONTACT</Link>
-        </nav>
-        {children}</body>
+
+        <header className="bg-gray-900 w-full overflow-hidden">
+          <div className={`sm:px-16 px-6 flex justify-center items-center`}>
+            <div className={`xl:max-w-[1280px] w-full`}>
+              <NavBar />
+            </div>
+          </div>
+        </header>
+     <ThemeContextProvider>
+      <section className={color}>
+        <p>{color}</p>
+        {children} 
+      </section>
+      </ThemeContextProvider>  
+        
+        <Footer/>
+        </body>
     </html>
   )
 }
