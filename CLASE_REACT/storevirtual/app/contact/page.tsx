@@ -1,4 +1,5 @@
 'use client'
+import { Form } from "@/components/formulario";
 import { useThemeContext } from "../context/theme";
 
 const contactPage = ()=>{
@@ -11,6 +12,9 @@ return(
         <button onClick={()=>{
             setColor('bg-red-700')
         }}>Cambiar color</button>
+
+
+    <Form/>
     </div>
     </div>
 );
