@@ -10,10 +10,8 @@ export default function Home() {
 
 
   const deletePerson = (index:number) =>{
-    
-    console.log(persons)
-    let personsDelete = persons.splice(index,1);
-    setPersons(personsDelete);
+    persons.splice(index,1);
+    setPersons([...persons]);
   }
   const handleClikEdit = (person:any,index:number)=>{
     const element ={id:index}

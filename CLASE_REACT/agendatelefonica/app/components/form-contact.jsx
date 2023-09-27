@@ -9,6 +9,7 @@ export const FormContact = ({persons,updatePersons,editPerson}) => {
     const [phone,setPhone] = useState("");
     const [email,setEmail] = useState("");
     const inputRefName = useRef(null);
+    const [edit,setEdit] = useState(false);
 
 
     const handleClean = () =>{
@@ -16,18 +17,32 @@ export const FormContact = ({persons,updatePersons,editPerson}) => {
         setLastName("");
         setEmail("");
         setPhone("");
+        setEdit(false);
         inputRefName.current.focus();
     }
 
     const handleSubmit = () =>{
-        const person = [{
-            name,
-            lastName,
-            phone,
-            email
-        }];
-        //spread iterables
-        updatePersons([...persons,...person])
+        if(edit == false){
+            const person = [{
+                name,
+                lastName,
+                phone,
+                email
+            }];
+            //spread iterables
+            updatePersons([...persons,...person])
+        }
+        else{
+            persons[editPerson.id].name = name;
+            persons[editPerson.id].lastName = lastName;
+            persons[editPerson.id].phone = phone;
+            persons[editPerson.id].email = email;
+
+            updatePersons([...persons]);
+
+
+        }
+
         handleClean()
     }
     
@@ -37,6 +52,7 @@ export const FormContact = ({persons,updatePersons,editPerson}) => {
         setLastName(editPerson.lastName);
         setEmail(editPerson.email);
         setPhone(editPerson.phone);
+        setEdit(true)
         console.log(editPerson)
       }
     },[editPerson])
@@ -135,7 +151,7 @@ export const FormContact = ({persons,updatePersons,editPerson}) => {
                     onClick={handleSubmit}
                     className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
-                    Save
+                  {edit ? 'Save Edit' : 'Save' } 
                 </button>
             </div>
         </div>
