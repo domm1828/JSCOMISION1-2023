@@ -1,8 +1,20 @@
 const express = require("express");
 const app = express();
+const bodyParser = require("body-parser");
 const port = 5000;
 
 const userRoute = require('./routers/user.router');
+const isAdminMiddleware = require('./middleware/admin.middleware')
+
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
+
+//app.use(express.json());
+//app.use(express.urlencoded());
+//app.use(express.multipart())
+
+
 
 
 app.get('/',(req,res)=>{
@@ -12,8 +24,8 @@ app.get('/',(req,res)=>{
     //render => renderizar
     res.json({welcome:"Welcome V.0.0.1"}); 
 });
-
-app.use('/users',userRoute);
+//app.use(isAdminMiddleware);
+app.use('/api/users',userRoute,isAdminMiddleware);
 
 /*
 app.get('/hello',(req,res)=>{

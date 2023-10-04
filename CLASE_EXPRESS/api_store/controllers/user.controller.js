@@ -3,7 +3,19 @@ const getAll = async(req,res)=>{
 };
 
 const postData = async(req,res)=>{
+    
+    console.log(req.body);
     res.json({data:'GET POST SAVE DATA'});
 };
 
-module.exports ={getAll,postData}
+const filterData = async(req,res)=>{
+    console.log(req.params);
+    //req.params => parametros dinamicos
+    //req.query => parametros por query
+    //req.body => parametros por el body
+    console.log(req.query);
+    res.json({data:req.params});
+};
+
+
+module.exports ={getAll,postData,filterData}
