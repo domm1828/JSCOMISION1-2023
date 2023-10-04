@@ -1,0 +1,6 @@
+const User = {
+    name,
+    lastName,
+    
+};
+
