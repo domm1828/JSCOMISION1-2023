@@ -1,6 +1,0 @@
-const User = {
-    name,
-    lastName,
-    
-};
-
