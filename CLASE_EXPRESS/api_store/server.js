@@ -4,8 +4,7 @@ const bodyParser = require("body-parser");
 const port = 5000;
 
 const userRoute = require('./routers/user.router');
-const isAdminMiddleware = require('./middleware/admin.middleware')
-
+ 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -23,9 +22,8 @@ app.get('/',(req,res)=>{
     //json => solo objetos
     //render => renderizar
     res.json({welcome:"Welcome V.0.0.1"}); 
-});
-//app.use(isAdminMiddleware);
-app.use('/api/users',userRoute,isAdminMiddleware);
+}); 
+app.use('/api/users',userRoute);
 
 /*
 app.get('/hello',(req,res)=>{

@@ -30,7 +30,7 @@ module.exports = {
       },
       password: {
         allowNull:false,
-        type: Sequelize.STRING(45)
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
@@ -38,6 +38,9 @@ module.exports = {
       },
       updatedAt: {
         allowNull: false,
+        type: Sequelize.DATE
+      },
+      deletedAt: { 
         type: Sequelize.DATE
       }
     });
