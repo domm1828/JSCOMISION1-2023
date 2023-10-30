@@ -26,7 +26,7 @@ module.exports = {
       },
       ean: {
         type: Sequelize.STRING(45)
-      },
+      }, 
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
