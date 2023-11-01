@@ -16,10 +16,20 @@ module.exports = (sequelize, DataTypes) => {
   product.init({
     code: DataTypes.STRING,
     name: DataTypes.STRING,
-    description: DataTypes.STRING,
+    description:{
+      type:DataTypes.STRING,
+      set(value){
+        this.setDataValue('description',value.toUpperCase())
+      }
+    } ,
     brand: DataTypes.STRING,
     ean: DataTypes.STRING,
-    photo:DataTypes.TEXT
+    photo:{
+      type:DataTypes.TEXT,
+      get(){
+        return this.getDataValue('photo') ? `http://localhost:5000/public/products/${this.getDataValue('photo')}` : '';
+      }
+    }
   }, {
     sequelize,
     modelName: 'product',

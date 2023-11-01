@@ -19,7 +19,13 @@ module.exports = (sequelize, DataTypes) => {
     last_name: DataTypes.STRING,
     phone: DataTypes.STRING,
     email: DataTypes.STRING,
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
+    fullName:{
+      type:new DataTypes.VIRTUAL(DataTypes.STRING,['name','last_name']),
+      get(){
+        return `${this.name} ${this.last_name}`
+      }
+    }
   }, {
     sequelize,
     modelName: 'user',

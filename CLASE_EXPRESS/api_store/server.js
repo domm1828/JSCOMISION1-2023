@@ -7,6 +7,14 @@ const userRoute = require('./routers/user.router');
 const productRouter = require('./routers/product.router');
 
 
+
+/** function to handleError */
+const errorHandler =(error,req,resp,next)=>{
+    const status = error.status || 400;
+    resp.status(status).json({ error: true, message: error.message });
+}
+
+/** end function */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -27,6 +35,8 @@ app.get('/', (req, res) => {
 app.use('/api/users', userRoute);
 app.use('/api/products',productRouter);
 
+
+app.use(errorHandler);
 
 /*
 app.get('/hello',(req,res)=>{
