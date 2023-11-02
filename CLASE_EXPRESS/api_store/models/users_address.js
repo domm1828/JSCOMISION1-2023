@@ -22,7 +22,9 @@ module.exports = (sequelize, DataTypes) => {
     department: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'users_address',
+    modelName: 'users_address',    
+    paranoid:true,
   });
+ 
   return users_address;
 };

@@ -25,7 +25,8 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'sale',
+    modelName: 'sale',  
+    paranoid:true,
   });
   return sale;
 };

@@ -5,7 +5,7 @@ const { Op } = require("sequelize");
 const getAll = async (req, res) => {
     try {
 
-        let filter = {};
+        let filter = {include: ["address"]};
         let optionSql = [];
 
         if (req.query.name) {
@@ -26,7 +26,7 @@ const getAll = async (req, res) => {
             filter ={
                 where: {
                     [Op.or]: optionSql
-                } 
+                }, include: ["address"]
             }
         } 
         let users = await db.user.findAll(filter);

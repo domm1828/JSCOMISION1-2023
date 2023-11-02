@@ -20,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
     amount: DataTypes.FLOAT
   }, {
     sequelize,
-    modelName: 'details_sales',
+    modelName: 'details_sales',  
+    paranoid:true,
   });
   return details_sales;
 };

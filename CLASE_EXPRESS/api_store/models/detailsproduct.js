@@ -22,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
     size: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'detailsProduct',
+    modelName: 'detailsProduct',  
+    paranoid:true,
   });
   return detailsProduct;
 };

@@ -5,7 +5,7 @@ const port = 5000;
 
 const userRoute = require('./routers/user.router');
 const productRouter = require('./routers/product.router');
-
+const addressRouter = require('./routers/user_address.router');
 
 
 /** function to handleError */
@@ -34,6 +34,7 @@ app.get('/', (req, res) => {
 });
 app.use('/api/users', userRoute);
 app.use('/api/products',productRouter);
+app.use('/api/address',addressRouter);
 
 
 app.use(errorHandler);
