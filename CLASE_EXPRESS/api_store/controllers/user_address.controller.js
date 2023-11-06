@@ -65,6 +65,25 @@ const updateAddress = async (req, res) => {
         res.status(400).json({ error: true, message: e })
     }
 };
+const getById = async (req, res)=>{
+    try {
+        let id = req.params.id;
+        let addressUser = await Address.findByPk(id,{include:['addressUsers']});
+
+        if (addressUser) {
+              
+            res.status(200).json({ error: false, message: 'Direccion Modificada Exitosamente', data: addressUser });
+        }
+        else {
+            res.status(404).json({ error: true, message: 'Id de Direccion no existe' })
+        }
 
 
-module.exports = { getAll, postAddress, updateAddress, deleteAddress }
+    }
+    catch (e) {
+        res.status(400).json({ error: true, message: e })
+    }
+}
+
+
+module.exports = { getAll, postAddress, updateAddress, deleteAddress,getById }

@@ -5,7 +5,7 @@ const { Op } = require("sequelize");
 const getAll = async (req, res) => {
     try {
 
-        let filter = {include: ["address"]};
+        let filter = { include: ["address"] };
         let optionSql = [];
 
         if (req.query.name) {
@@ -22,13 +22,13 @@ const getAll = async (req, res) => {
                 }
             });
         }
-        if(optionSql.length > 0){
-            filter ={
+        if (optionSql.length > 0) {
+            filter = {
                 where: {
                     [Op.or]: optionSql
                 }, include: ["address"]
             }
-        } 
+        }
         let users = await db.user.findAll(filter);
         res.status(200).json({ error: false, message: 'Listado de usuarios', data: users });
     }
@@ -97,4 +97,23 @@ const updateUser = async (req, res) => {
 };
 
 
-module.exports = { getAll, postData, updateUser, deleteUser }
+const getById = async (req, res) => {
+    try {
+        
+        let id=req.params.id
+    
+        let user = await db.user.findByPk(id,{include:['address']});
+        if(user){
+            res.status(200).json({ error: false, message: 'Usuario', data: user }); 
+        }
+        else{
+            res.status(404).json({ error: true, message: 'Id de usuario no existe' })   
+        }
+    }
+    catch (e) {
+        res.status(400).json({ error: true, message: e })
+    }
+}
+
+
+module.exports = { getAll, postData, updateUser, deleteUser,getById }

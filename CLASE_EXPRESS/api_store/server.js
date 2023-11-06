@@ -6,11 +6,13 @@ const port = 5000;
 const userRoute = require('./routers/user.router');
 const productRouter = require('./routers/product.router');
 const addressRouter = require('./routers/user_address.router');
+const loginRouter = require('./routers/login.router');
 
 
 /** function to handleError */
 const errorHandler =(error,req,resp,next)=>{
     const status = error.status || 400;
+    console.log(error)
     resp.status(status).json({ error: true, message: error.message });
 }
 
@@ -36,8 +38,10 @@ app.use('/api/users', userRoute);
 app.use('/api/products',productRouter);
 app.use('/api/address',addressRouter);
 
+app.use('/api/login',loginRouter);
 
-app.use(errorHandler);
+
+//app.use(errorHandler);
 
 /*
 app.get('/hello',(req,res)=>{
