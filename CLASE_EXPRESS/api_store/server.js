@@ -8,7 +8,9 @@ const productRouter = require('./routers/product.router');
 const addressRouter = require('./routers/user_address.router');
 const loginRouter = require('./routers/login.router');
 
+const userMongoRouter = require('./routers/mongo/user.router');
 
+require('./config/db.mongo.config');
 /** function to handleError */
 const errorHandler =(error,req,resp,next)=>{
     const status = error.status || 400;
@@ -40,8 +42,9 @@ app.use('/api/address',addressRouter);
 
 app.use('/api/login',loginRouter);
 
+app.use('/api/mongo/users', userMongoRouter);
 
-//app.use(errorHandler);
+app.use(errorHandler);
 
 /*
 app.get('/hello',(req,res)=>{
@@ -55,3 +58,8 @@ app.listen(port, () => {
 //ROUTES HTTP GET - POST - PUT - PATCH-  DELETE - HEAD - OPTIONS
 //app.method(PATH,handler)
 //MVC Model(DB) View(UI)  Controller(Logic)
+
+//hackingdomm
+//ZNKM69MkMUwE4ZE9
+
+//mongodb+srv://hackingdomm:ZNKM69MkMUwE4ZE9@comision1a.z0yurzx.mongodb.net/
